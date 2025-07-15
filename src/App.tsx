@@ -1,13 +1,13 @@
 import './App.css'
-import DelayedCounter from "./Delay.tsx";
-import Counter from "./Counter.tsx";
+import TodoTemplate from "./components/TodoTemplate.tsx";
 
 
 function App() {
     return (
         <>
-            <DelayedCounter />
-            <Counter />
+            {/*<DelayedCounter />*/}
+            {/*<Counter />*/}
+            <TodoTemplate>Todo App을 만들자.</TodoTemplate>
         </>
     )
 }

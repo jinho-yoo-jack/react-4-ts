@@ -1,5 +1,6 @@
 import './App.css'
 import TodoTemplate from "./components/TodoTemplate.tsx";
+import TodoInsert from "./components/TodoInsert.tsx";
 
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
         <>
             {/*<DelayedCounter />*/}
             {/*<Counter />*/}
-            <TodoTemplate>Todo App을 만들자.</TodoTemplate>
+            <TodoTemplate>
+                <TodoInsert/>
+            </TodoTemplate>
         </>
     )
 }

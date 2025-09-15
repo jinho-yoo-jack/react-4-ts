@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML과 CSS 기초 - 폼 요소와 스타일링</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 0 0 30px 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        h2 {
+            color: #667eea;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+
+        h4 {
+            color: #495057;
+            margin-top: 25px;
+            font-size: 1.2em;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            position: relative;
+            white-space: pre;
+        }
+
+        .code-block::before {
+            content: "HTML";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .css-code::before {
+            content: "CSS";
+            background: #764ba2;
+        }
+
+        .example {
+            background: #e7f3ff;
+            border: 2px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .example h4 {
+            color: #0066cc;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .example h4::before {
+            content: "💡";
+            margin-right: 10px;
+        }
+
+        .demo-form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #dee2e6;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        .note::before {
+            content: "📝 참고: ";
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: #495057;
+            text-align: center;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .toc li:last-child {
+            border-bottom: none;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+        }
+
+        .highlight {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .semantic-example {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .semantic-before,
+        .semantic-after {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+        }
+
+        .semantic-before {
+            background: #ffebee;
+            border-color: #ef5350;
+        }
+
+        .semantic-after {
+            background: #e8f5e8;
+            border-color: #4caf50;
+        }
+
+        .box-model-demo {
+            background: #e3f2fd;
+            border: 10px solid #1976d2;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .margin-demo {
+            background: #ffcdd2;
+            margin: 20px;
+        }
+
+        .padding-demo {
+            background: #c8e6c9;
+            padding: 20px;
+        }
+
+        .border-demo {
+            border: 5px solid #ff9800;
+        }
+
+        .content-demo {
+            background: #fff3e0;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .semantic-example {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>HTML과 CSS 기초 - 폼 요소와 스타일링 완전 가이드</h1>
+
+<div class="container">
+    <div class="toc">
+        <h3>📚 수업 목차</h3>
+        <ul>
+            <li><strong>폼 요소 다루기</strong>
+                <ul style="margin-left: 20px; list-style: decimal;">
+                    <li><a href="#input-tag">입력 태그 &lt;input&gt;</a></li>
+                    <li><a href="#other-inputs">&lt;input&gt; 외 입력 태그들</a></li>
+                    <li><a href="#form-submission">양식을 만들고 값 전송하기</a></li>
+                    <li><a href="#semantic-tags">의미론적인 코드 - 시맨틱 태그</a></li>
+                    <li><a href="#metadata">문서 정보 관리하기 - 메타 데이터</a></li>
+                    <li><a href="#survey-practice">실습: 설문조사 양식 만들기</a></li>
+                </ul>
+            </li>
+            <li><strong>CSS 기초</strong>
+                <ul style="margin-left: 20px; list-style: decimal;">
+                    <li><a href="#css-intro">CSS 소개 및 기본 문법</a></li>
+                    <li><a href="#css-usage">CSS 문서 사용하기</a></li>
+                    <li><a href="#selectors">선택자 기본편</a></li>
+                    <li><a href="#box-model">박스모델이란?</a></li>
+                    <li><a href="#border-styles">테두리 스타일</a></li>
+                    <li><a href="#margin-padding">여백 다루기</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 폼 요소 다루기 -->
+<div class="container">
+    <h2 id="input-tag">1. 입력 태그 &lt;input&gt;</h2>
+
+    <p><code>&lt;input&gt;</code> 태그는 웹에서 사용자로부터 정보를 입력받을 때 사용하는 가장 기본적인 태그입니다. <code>type</code> 속성을 통해 다양한 형태의 입력을 받을
+        수 있습니다.</p>
+
+    <h3>주요 input 타입들</h3>
+
+    <div class="example">
+        <h4>텍스트 입력 (text)</h4>
+        <div class="code-block">&lt;input type="text" name="username" placeholder="사용자명을 입력하세요"&gt;</div>
+        <div class="demo-form"><input type="text" name="username" placeholder="사용자명을 입력하세요"></div>
+    </div>
+
+    <div class="example">
+        <h4>비밀번호 입력 (password)</h4>
+        <div class="code-block">&lt;input type="password" name="password" placeholder="비밀번호를 입력하세요"&gt;</div>
+        <div class="demo-form">
+            <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>이메일 입력 (email)</h4>
+        <div class="code-block">&lt;input type="email" name="email" placeholder="example@email.com"&gt;</div>
+        <div class="demo-form">
+            <input type="email" name="email" placeholder="example@email.com">
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>숫자 입력 (number)</h4>
+        <div class="code-block">&lt;input type="number" name="age" min="1" max="100" placeholder="나이를 입력하세요"&gt;</div>
+        <div class="demo-form">
+            <input type="number" name="age" min="1" max="100" placeholder="나이를 입력하세요" style="width: 30ch;">
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>날짜 선택 (date)</h4>
+        <div class="code-block">&lt;input type="date" name="birthday"&gt;</div>
+        <div class="demo-form">
+            <input type="date" name="birthday">
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>체크박스 (checkbox)</h4>
+        <div class="code-block">&lt;input type="checkbox" name="hobbies" value="reading" id="reading"&gt;<br />&lt;label for="reading"&gt;독서&lt;/label&gt;<br/>&lt;input type="checkbox" name="hobbies" value="music" id="music"&gt;<br />&lt;label for="music"&gt;음악감상&lt;/label&gt;</div>
+        <div class="demo-form">
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" name="hobbies" value="reading" id="reading">
+                    <label for="reading">독서</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="hobbies" value="music" id="music">
+                    <label for="music">음악감상</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>라디오 버튼 (radio)</h4>
+        <div class="code-block">&lt;input type="radio" name="gender" value="male" id="male"&gt;<br/>&lt;label for="male"&gt;남성&lt;/label&gt;<br/>&lt;input type="radio" name="gender" value="female" id="female"&gt;<br/>&lt;label for="female"&gt;여성&lt;/label&gt;
+        </div>
+        <div class="demo-form">
+            <div class="radio-group">
+                <div class="radio-item">
+                    <input type="radio" name="gender" value="male" id="male">
+                    <label for="male">남성</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" name="gender" value="female" id="female">
+                    <label for="female">여성</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>label 태그의 중요성:</strong> label 태그는 input 요소와 연결되어 접근성을 높이고 사용성을 개선합니다. for 속성과 input의 id 속성을 일치시켜 연결하거나,
+        label 안에 input을 직접 포함시킬 수 있습니다.
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="other-inputs">2. &lt;input&gt; 외 입력 태그들</h2>
+
+    <h3>select 태그 - 드롭다운 메뉴</h3>
+    <div class="example">
+        <h4>기본 select</h4>
+        <div class="code-block">
+            &lt;select name="city"&gt;
+            &lt;option value=""&gt;도시를 선택하세요&lt;/option&gt;
+            &lt;option value="seoul"&gt;서울&lt;/option&gt;
+            &lt;option value="busan"&gt;부산&lt;/option&gt;
+            &lt;option value="incheon"&gt;인천&lt;/option&gt;
+            &lt;/select&gt;
+        </div>
+        <div class="demo-form">
+            <select name="city">
+                <option value="">도시를 선택하세요</option>
+                <option value="seoul">서울</option>
+                <option value="busan">부산</option>
+                <option value="incheon">인천</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>multiple 선택 가능한 select</h4>
+        <div class="code-block">&lt;select name="languages" multiple&gt;
+            &lt;option value="korean"&gt;한국어&lt;/option&gt;
+            &lt;option value="english"&gt;영어&lt;/option&gt;
+            &lt;option value="japanese"&gt;일본어&lt;/option&gt;
+            &lt;option value="chinese"&gt;중국어&lt;/option&gt;
+            &lt;/select&gt;
+        </div>
+        <div class="demo-form">
+            <select name="languages" multiple style="height: 80px;">
+                <option value="korean">한국어</option>
+                <option value="english">영어</option>
+                <option value="japanese">일본어</option>
+                <option value="chinese">중국어</option>
+            </select>
+            <small style="display: block; margin-top: 5px; color: #666;">Ctrl(Cmd) + 클릭으로 여러 항목 선택 가능</small>
+        </div>
+    </div>
+
+    <h3>textarea 태그 - 여러 줄 텍스트 입력</h3>
+    <div class="example">
+        <h4>기본 textarea</h4>
+        <div class="code-block">
+            &lt;textarea name="message" rows="4" cols="50"
+            placeholder="메시지를 입력하세요..."&gt;&lt;/textarea&gt;
+        </div>
+        <div class="demo-form">
+            <textarea name="message" rows="4" placeholder="메시지를 입력하세요..."></textarea>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>textarea 속성:</strong>
+        <ul>
+            <li><code>rows</code>: 표시될 줄 수</li>
+            <li><code>cols</code>: 표시될 열 수 (문자 수)</li>
+            <li><code>resize</code>: CSS로 크기 조절 가능 여부 설정</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="form-submission">3. 양식을 만들고 값 전송하기</h2>
+
+    <p><code>&lt;form&gt;</code> 태그는 사용자 입력을 서버로 전송하기 위한 컨테이너입니다.</p>
+
+    <h3>form 태그의 주요 속성</h3>
+    <ul>
+        <li><code>action</code>: 데이터를 전송할 URL</li>
+        <li><code>method</code>: 전송 방법 (GET 또는 POST)</li>
+        <li><code>enctype</code>: 데이터 인코딩 방식</li>
+    </ul>
+
+    <div class="example">
+        <h4>완전한 회원가입 폼</h4>
+        <div class="code-block">
+            &lt;form action="/register" method="POST"&gt;
+            &lt;div class="form-group"&gt;
+            &lt;label for="user-name"&gt;이름:&lt;/label&gt;
+            &lt;input type="text" id="user-name" name="username" required&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="user-email"&gt;이메일:&lt;/label&gt;
+            &lt;input type="email" id="user-email" name="email" required&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="user-password"&gt;비밀번호:&lt;/label&gt;
+            &lt;input type="password" id="user-password" name="password" required&gt;
+            &lt;/div&gt;
+
+            &lt;button type="submit"&gt;회원가입&lt;/button&gt;
+            &lt;button type="reset"&gt;초기화&lt;/button&gt;
+            &lt;/form&gt;
+        </div>
+
+        <div class="demo-form">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="user-name">이름:</label>
+                    <input type="text" id="user-name" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-email">이메일:</label>
+                    <input type="email" id="user-email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-password">비밀번호:</label>
+                    <input type="password" id="user-password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn">회원가입</button>
+                <button type="reset" class="btn" style="background: #6c757d; margin-left: 10px;">초기화</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>버튼의 종류:</strong>
+        <ul>
+            <li><code>type="submit"</code>: 폼 데이터를 전송</li>
+            <li><code>type="reset"</code>: 폼 내용을 초기화</li>
+            <li><code>type="button"</code>: 일반 버튼 (JavaScript 이벤트용)</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="semantic-tags">4. 의미론적인 코드 - 시맨틱 태그</h2>
+
+    <p>시맨틱 태그는 HTML 문서의 <span class="highlight">의미와 구조</span>를 명확하게 나타내는 태그입니다. 검색엔진과 스크린 리더가 문서를 더 잘 이해할 수 있게 도와줍니다.
+    </p>
+
+    <h3>주요 시맨틱 태그</h3>
+
+    <div class="semantic-example">
+        <div class="semantic-before">
+            <h4 style="color: #d32f2f; margin-top: 0;">❌ 의미없는 div 사용</h4>
+            <div class="code-block">
+                &lt;div class="header"&gt;
+                &lt;div class="navigation"&gt;...&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="main-content"&gt;
+                &lt;div class="article"&gt;...&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="footer"&gt;...&lt;/div&gt;
+            </div>
+        </div>
+
+        <div class="semantic-after">
+            <h4 style="color: #388e3c; margin-top: 0;">✅ 시맨틱 태그 사용</h4>
+            <div class="code-block">
+                &lt;header&gt;
+                &lt;nav&gt;...&lt;/nav&gt;
+                &lt;/header&gt;
+                &lt;main&gt;
+                &lt;article&gt;...&lt;/article&gt;
+                &lt;/main&gt;
+                &lt;footer&gt;...&lt;/footer&gt;
+            </div>
+        </div>
+    </div>
+
+    <h3>시맨틱 태그 설명</h3>
+    <ul>
+        <li><code>&lt;header&gt;</code>: 페이지나 섹션의 머리글</li>
+        <li><code>&lt;nav&gt;</code>: 내비게이션 링크</li>
+        <li><code>&lt;main&gt;</code>: 페이지의 주요 콘텐츠</li>
+        <li><code>&lt;article&gt;</code>: 독립적인 콘텐츠</li>
+        <li><code>&lt;section&gt;</code>: 관련있는 콘텐츠 그룹</li>
+        <li><code>&lt;aside&gt;</code>: 사이드바나 부가 정보</li>
+        <li><code>&lt;footer&gt;</code>: 페이지나 섹션의 바닥글</li>
+    </ul>
+
+    <div class="example">
+        <h4>시맨틱 태그를 활용한 블로그 구조</h4>
+        <div class="code-block">
+            &lt;header&gt;
+            &lt;h1&gt;내 블로그&lt;/h1&gt;
+            &lt;nav&gt;
+            &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#home"&gt;홈&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#about"&gt;소개&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#contact"&gt;연락처&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;/header&gt;
+
+            &lt;main&gt;
+            &lt;article&gt;
+            &lt;header&gt;
+            &lt;h2&gt;블로그 포스트 제목&lt;/h2&gt;
+            &lt;p&gt;작성일: &lt;time datetime="2025-01-15"&gt;2025년 1월 15일&lt;/time&gt;&lt;/p&gt;
+            &lt;/header&gt;
+            &lt;p&gt;포스트 내용...&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;/main&gt;
+
+            &lt;aside&gt;
+            &lt;h3&gt;최근 글&lt;/h3&gt;
+            &lt;ul&gt;
+            &lt;li&gt;글 1&lt;/li&gt;
+            &lt;li&gt;글 2&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;/aside&gt;
+
+            &lt;footer&gt;
+            &lt;p&gt;&copy; 2025 내 블로그. 모든 권리 보유.&lt;/p&gt;
+            &lt;/footer&gt;
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="metadata">5. 문서 정보 관리하기 - 메타 데이터</h2>
+
+    <p>메타 데이터는 HTML 문서에 대한 정보를 제공하는 데이터입니다. <code>&lt;head&gt;</code> 태그 안에 위치합니다.</p>
+
+    <h3>필수 메타 태그들</h3>
+
+    <div class="example">
+        <h4>기본 메타 태그 구성</h4>
+        <div class="code-block">&lt;!DOCTYPE html&gt;
+            &lt;html lang="ko"&gt;
+            &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;meta name="description" content="웹사이트에 대한 간단한 설명"&gt;
+            &lt;meta name="keywords" content="HTML, CSS, 웹개발, 튜토리얼"&gt;
+            &lt;meta name="author" content="작성자 이름"&gt;
+
+            &lt;title&gt;페이지 제목&lt;/title&gt;
+
+            &lt;!-- 소셜 미디어를 위한 Open Graph 태그 --&gt;
+            &lt;meta property="og:title" content="페이지 제목"&gt;
+            &lt;meta property="og:description" content="페이지 설명"&gt;
+            &lt;meta property="og:image" content="이미지URL"&gt;
+            &lt;meta property="og:url" content="페이지URL"&gt;
+            &lt;/head&gt;
+        </div>
+    </div>
+
+    <h3>메타 태그 설명</h3>
+    <ul>
+        <li><code>charset</code>: 문자 인코딩 설정 (UTF-8 권장)</li>
+        <li><code>viewport</code>: 반응형 웹을 위한 뷰포트 설정</li>
+        <li><code>description</code>: 검색엔진에 표시될 페이지 설명</li>
+        <li><code>keywords</code>: 페이지 관련 키워드</li>
+        <li><code>author</code>: 페이지 작성자</li>
+        <li><code>Open Graph</code>: 소셜 미디어 공유 시 표시될 정보</li>
+    </ul>
+
+    <div class="note">
+        <strong>SEO(검색엔진최적화) 팁:</strong> title과 description은 검색 결과에 직접 영향을 미치므로 의미있고 간결하게 작성하는 것이 중요합니다.
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="survey-practice">6. 실습: 설문조사 양식 만들기</h2>
+
+    <p>지금까지 배운 내용을 활용하여 완전한 설문조사 양식을 만들어보겠습니다.</p>
+
+    <div class="example">
+        <h4>종합 설문조사 폼</h4>
+        <div class="code-block">
+            &lt;form action="/survey" method="POST"&gt;
+            &lt;fieldset&gt;
+            &lt;legend&gt;개인 정보&lt;/legend&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="name"&gt;이름 *&lt;/label&gt;
+            &lt;input type="text" id="name" name="name" required&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="age"&gt;나이 *&lt;/label&gt;
+            &lt;input type="number" id="age" name="age" min="1" max="120" required&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label&gt;성별 *&lt;/label&gt;
+            &lt;input type="radio" id="male" name="gender" value="male" required&gt;
+            &lt;label for="male"&gt;남성&lt;/label&gt;
+            &lt;input type="radio" id="female" name="gender" value="female" required&gt;
+            &lt;label for="female"&gt;여성&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;/fieldset&gt;
+
+            &lt;fieldset&gt;
+            &lt;legend&gt;선호도 조사&lt;/legend&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="satisfaction"&gt;만족도&lt;/label&gt;
+            &lt;select id="satisfaction" name="satisfaction"&gt;
+            &lt;option value=""&gt;선택하세요&lt;/option&gt;
+            &lt;option value="very-satisfied"&gt;매우 만족&lt;/option&gt;
+            &lt;option value="satisfied"&gt;만족&lt;/option&gt;
+            &lt;option value="neutral"&gt;보통&lt;/option&gt;
+            &lt;option value="dissatisfied"&gt;불만족&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label&gt;관심 분야 (복수선택 가능)&lt;/label&gt;
+            &lt;input type="checkbox" id="tech" name="interests" value="technology"&gt;
+            &lt;label for="tech"&gt;기술&lt;/label&gt;
+            &lt;input type="checkbox" id="sports" name="interests" value="sports"&gt;
+            &lt;label for="sports"&gt;스포츠&lt;/label&gt;
+            &lt;input type="checkbox" id="culture" name="interests" value="culture"&gt;
+            &lt;label for="culture"&gt;문화&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;label for="feedback"&gt;의견 및 제안사항&lt;/label&gt;
+            &lt;textarea id="feedback" name="feedback" rows="4"
+            placeholder="자유롭게 의견을 작성해주세요..."&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;/fieldset&gt;
+
+            &lt;div class="form-group"&gt;
+            &lt;input type="checkbox" id="agree" name="agreement" required&gt;
+            &lt;label for="agree"&gt;개인정보 수집 및 이용에 동의합니다. *&lt;/label&gt;
+            &lt;/div&gt;
+
+            &lt;button type="submit"&gt;설문 제출&lt;/button&gt;
+            &lt;button type="reset"&gt;다시 작성&lt;/button&gt;
+            &lt;/form&gt;
+        </div>
+
+        <div class="demo-form">
+            <form action="#" method="POST" style="border: 2px solid #667eea;">
+                <fieldset style="border: 1px solid #ccc; margin-bottom: 20px; padding: 15px; border-radius: 5px;">
+                    <legend style="font-weight: bold; color: #667eea;">개인 정보</legend>
+
+                    <div class="form-group">
+                        <label for="survey-name">이름 *</label>
+                        <input type="text" id="survey-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="survey-age">나이 *</label>
+                        <input type="number" id="survey-age" name="age" min="1" max="120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>성별 *</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="survey-male" name="survey-gender" value="male" required>
+                                <label for="survey-male">남성</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="survey-female" name="survey-gender" value="female" required>
+                                <label for="survey-female">여성</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset style="border: 1px solid #ccc; margin-bottom: 20px; padding: 15px; border-radius: 5px;">
+                    <legend style="font-weight: bold; color: #667eea;">선호도 조사</legend>
+
+                    <div class="form-group">
+                        <label for="survey-satisfaction">만족도</label>
+                        <select id="survey-satisfaction" name="satisfaction">
+                            <option value="">선택하세요</option>
+                            <option value="very-satisfied">매우 만족</option>
+                            <option value="satisfied">만족</option>
+                            <option value="neutral">보통</option>
+                            <option value="dissatisfied">불만족</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>관심 분야 (복수선택 가능)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="survey-tech" name="interests" value="technology">
+                                <label for="survey-tech">기술</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="survey-sports" name="interests" value="sports">
+                                <label for="survey-sports">스포츠</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="survey-culture" name="interests" value="culture">
+                                <label for="survey-culture">문화</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="survey-feedback">의견 및 제안사항</label>
+                        <textarea id="survey-feedback" name="feedback" rows="4"
+                                  placeholder="자유롭게 의견을 작성해주세요..."></textarea>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="survey-agree" name="agreement" required>
+                        <label for="survey-agree">개인정보 수집 및 이용에 동의합니다. *</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">설문 제출</button>
+                <button type="reset" class="btn" style="background: #6c757d; margin-left: 10px;">다시 작성</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>fieldset과 legend:</strong> fieldset은 관련된 폼 요소들을 그룹화하고, legend는 그룹의 제목을 나타냅니다. 접근성과 사용성을 높이는 중요한 요소입니다.
+    </div>
+</div>
+
+<!-- CSS 기초 -->
+<div class="container">
+    <h2 id="css-intro">CSS 기초</h2>
+    <h2>1. CSS 소개 및 기본 문법</h2>
+
+    <p><strong>CSS(Cascading Style Sheets)</strong>는 HTML 문서의 스타일과 레이아웃을 정의하는 언어입니다.</p>
+
+    <h3>CSS 기본 문법</h3>
+    <div class="code-block css-code">
+        선택자 {
+        속성: 값;
+        속성: 값;
+        }
+
+        /* 예시 */
+        h1 {
+        color: blue;
+        font-size: 24px;
+        text-align: center;
+        }
+    </div>
+
+    <h3>CSS 구성 요소</h3>
+    <ul>
+        <li><strong>선택자(Selector)</strong>: 스타일을 적용할 HTML 요소</li>
+        <li><strong>속성(Property)</strong>: 변경하고자 하는 스타일 특성</li>
+        <li><strong>값(Value)</strong>: 속성에 설정할 값</li>
+        <li><strong>선언(Declaration)</strong>: 속성과 값의 조합</li>
+        <li><strong>선언 블록</strong>: 중괄호 {} 안의 모든 선언들</li>
+    </ul>
+
+    <div class="example">
+        <h4>기본 스타일링 예제</h4>
+        <div class="code-block css-code">
+            /* 모든 p 태그에 스타일 적용 */
+            p {
+            color: #333333; /* 글자색 */
+            font-size: 16px; /* 글자크기 */
+            line-height: 1.5; /* 줄간격 */
+            margin-bottom: 15px; /* 아래쪽 여백 */
+            }
+
+            /* h1 태그에 스타일 적용 */
+            h1 {
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+            text-decoration: underline;
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="css-usage">2. CSS 문서 사용하기</h2>
+
+    <p>CSS를 HTML에 적용하는 방법은 3가지가 있습니다.</p>
+
+    <h3>1) 인라인 스타일 (Inline Style)</h3>
+    <div class="code-block">
+        &lt;p style="color: red; font-size: 18px;"&gt;빨간 글씨&lt;/p&gt;
+    </div>
+    <div class="demo-form">
+        <p style="color: red; font-size: 18px;">빨간 글씨</p>
+    </div>
+
+    <h3>2) 내부 스타일시트 (Internal Stylesheet)</h3>
+    <div class="code-block">
+        &lt;head&gt;
+        &lt;style&gt;
+        .blue-text {
+        color: blue;
+        font-weight: bold;
+        }
+        &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        &lt;p class="blue-text"&gt;파란 굵은 글씨&lt;/p&gt;
+        &lt;/body&gt;
+    </div>
+
+    <h3>3) 외부 스타일시트 (External Stylesheet)</h3>
+    <div class="code-block">
+        &lt;!-- HTML 파일 --&gt;
+        &lt;head&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+        &lt;/head&gt;
+    </div>
+
+    <div class="code-block css-code">
+        /* styles.css 파일 */
+        .green-text {
+        color: green;
+        font-style: italic;
+        }
+    </div>
+
+    <div class="note">
+        <strong>우선순위:</strong> 인라인 스타일 > 내부 스타일시트 > 외부 스타일시트 순으로 적용됩니다. 같은 속성에 대해 여러 규칙이 있을 때는 더 높은 우선순위가 적용됩니다.
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="selectors">3. 선택자 기본편</h2>
+
+    <p>선택자는 스타일을 적용할 HTML 요소를 지정하는 방법입니다.</p>
+
+    <h3>기본 선택자들</h3>
+
+    <div class="example">
+        <h4>1) 태그 선택자 (Element Selector)</h4>
+        <div class="code-block css-code">
+            /* 모든 p 태그 선택 */
+            p {
+            color: black;
+            }
+
+            /* 모든 h2 태그 선택 */
+            h2 {
+            color: navy;
+            }
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>2) 클래스 선택자 (Class Selector)</h4>
+        <div class="code-block css-code">
+            /* 클래스명이 'highlight'인 요소 선택 */
+            .highlight {
+            background-color: yellow;
+            }
+
+            /* 클래스명이 'btn'인 요소 선택 */
+            .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            }
+        </div>
+        <div class="code-block">
+            &lt;p class="highlight"&gt;강조된 텍스트&lt;/p&gt;
+            &lt;button class="btn"&gt;버튼&lt;/button&gt;
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>3) ID 선택자 (ID Selector)</h4>
+        <div class="code-block css-code">
+            /* ID가 'header'인 요소 선택 */
+            #header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            }
+
+            /* ID가 'main-content'인 요소 선택 */
+            #main-content {
+            width: 80%;
+            margin: 0 auto;
+            }
+        </div>
+        <div class="code-block">
+            &lt;header id="header"&gt;헤더 영역&lt;/header&gt;
+            &lt;main id="main-content"&gt;메인 콘텐츠&lt;/main&gt;
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>4) 복합 선택자</h4>
+        <div class="code-block css-code">
+            /* 후손 선택자: nav 안의 모든 a 태그 */
+            nav a {
+            text-decoration: none;
+            color: #333;
+            }
+
+            /* 자식 선택자: ul의 직접 자식인 li 태그만 */
+            ul > li {
+            list-style: none;
+            }
+
+            /* 여러 선택자: h1, h2, h3 태그 모두 선택 */
+            h1, h2, h3 {
+            font-family: Arial, sans-serif;
+            }
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>5) 가상 클래스 선택자</h4>
+        <div class="code-block css-code">
+            /* 마우스 호버 시 */
+            a:hover {
+            color: red;
+            text-decoration: underline;
+            }
+
+            /* 포커스 시 (입력 필드 등) */
+            input:focus {
+            border-color: blue;
+            outline: none;
+            }
+
+            /* 첫 번째 자식 요소 */
+            li:first-child {
+            font-weight: bold;
+            }
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>선택자 우선순위:</strong>
+        <ol>
+            <li>인라인 스타일 (1000점)</li>
+            <li>ID 선택자 (100점)</li>
+            <li>클래스 선택자 (10점)</li>
+            <li>태그 선택자 (1점)</li>
+        </ol>
+        점수가 높을수록 우선 적용됩니다.
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="box-model">4. 박스모델이란?</h2>
+
+    <p>CSS 박스모델은 모든 HTML 요소가 사각형 박스로 구성되어 있다는 개념입니다. 각 박스는 4개의 영역으로 구성됩니다.</p>
+
+    <h3>박스모델의 4가지 구성요소</h3>
+
+    <div class="box-model-demo">
+        <div class="margin-demo">
+            <strong>Margin (마진)</strong>
+            <div class="border-demo">
+                <strong>Border (테두리)</strong>
+                <div class="padding-demo">
+                    <strong>Padding (패딩)</strong>
+                    <div class="content-demo">
+                        <strong>Content (내용)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>박스모델 CSS 예제</h4>
+        <div class="code-block css-code">
+            .box {
+            /* Content 영역 */
+            width: 200px;
+            height: 100px;
+
+            /* Padding (안쪽 여백) */
+            padding: 20px;
+
+            /* Border (테두리) */
+            border: 5px solid #333;
+
+            /* Margin (바깥쪽 여백) */
+            margin: 15px;
+
+            background-color: lightblue;
+            }
+        </div>
+    </div>
+
+    <h3>박스모델 계산</h3>
+    <div class="note">
+        <strong>전체 크기 계산:</strong>
+        <ul>
+            <li><strong>전체 너비</strong> = width + padding-left + padding-right + border-left + border-right + margin-left
+                + margin-right
+            </li>
+            <li><strong>전체 높이</strong> = height + padding-top + padding-bottom + border-top + border-bottom + margin-top
+                + margin-bottom
+            </li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h4>box-sizing 속성</h4>
+        <div class="code-block css-code">
+            /* 기본값: content-box */
+            .box1 {
+            box-sizing: content-box;
+            width: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            /* 실제 너비: 200 + 40 + 10 = 250px */
+            }
+
+            /* border-box: padding과 border 포함 */
+            .box2 {
+            box-sizing: border-box;
+            width: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            /* 실제 너비: 200px (padding, border 포함) */
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="border-styles">5. 테두리 스타일</h2>
+
+    <p>CSS의 border 속성을 사용하여 요소의 테두리를 꾸밀 수 있습니다.</p>
+
+    <h3>기본 border 속성</h3>
+    <div class="code-block css-code">
+        /* 전체 테두리 */
+        border: 두께 스타일 색상;
+
+        /* 개별 속성 */
+        border-width: 두께;
+        border-style: 스타일;
+        border-color: 색상;
+
+        /* 방향별 테두리 */
+        border-top: 두께 스타일 색상;
+        border-right: 두께 스타일 색상;
+        border-bottom: 두께 스타일 색상;
+        border-left: 두께 스타일 색상;
+    </div>
+
+    <div class="example">
+        <h4>다양한 테두리 스타일</h4>
+        <div class="code-block css-code">
+            .solid-border { border: 3px solid #333; }
+            .dashed-border { border: 3px dashed #e74c3c; }
+            .dotted-border { border: 3px dotted #3498db; }
+            .double-border { border: 5px double #9b59b6; }
+            .groove-border { border: 5px groove #f39c12; }
+            .ridge-border { border: 5px ridge #27ae60; }
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="padding: 15px; border: 3px solid #333; text-align: center; background: #f8f9fa;">solid</div>
+            <div style="padding: 15px; border: 3px dashed #e74c3c; text-align: center; background: #f8f9fa;">dashed
+            </div>
+            <div style="padding: 15px; border: 3px dotted #3498db; text-align: center; background: #f8f9fa;">dotted
+            </div>
+            <div style="padding: 15px; border: 5px double #9b59b6; text-align: center; background: #f8f9fa;">double
+            </div>
+            <div style="padding: 15px; border: 5px groove #f39c12; text-align: center; background: #f8f9fa;">groove
+            </div>
+            <div style="padding: 15px; border: 5px ridge #27ae60; text-align: center; background: #f8f9fa;">ridge</div>
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>둥근 모서리 (border-radius)</h4>
+        <div class="code-block css-code">
+            .rounded-corners {
+            border: 2px solid #667eea;
+            border-radius: 10px; /* 모든 모서리 */
+            }
+
+            .circle {
+            width: 100px;
+            height: 100px;
+            border: 3px solid #e74c3c;
+            border-radius: 50%; /* 원형 */
+            }
+
+            .custom-radius {
+            border: 2px solid #27ae60;
+            border-radius: 10px 20px 30px 40px; /* 각 모서리 개별 설정 */
+            }
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: center; margin: 20px 0; flex-wrap: wrap;">
+            <div style="padding: 15px; border: 2px solid #667eea; border-radius: 10px; background: #f8f9fa;">둥근 모서리
+            </div>
+            <div style="width: 80px; height: 80px; border: 3px solid #e74c3c; border-radius: 50%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                원형
+            </div>
+            <div style="padding: 15px; border: 2px solid #27ae60; border-radius: 10px 20px 30px 40px; background: #f8f9fa;">
+                개별 설정
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 id="margin-padding">6. 여백 다루기</h2>
+
+    <p>margin과 padding은 요소의 여백을 조절하는 중요한 속성입니다.</p>
+
+    <h3>Margin (마진) - 바깥쪽 여백</h3>
+    <div class="code-block css-code">
+        /* 전체 마진 */
+        margin: 10px; /* 상하좌우 모두 10px */
+        margin: 10px 20px; /* 상하 10px, 좌우 20px */
+        margin: 10px 20px 30px; /* 상 10px, 좌우 20px, 하 30px */
+        margin: 10px 20px 30px 40px; /* 상 10px, 우 20px, 하 30px, 좌 40px */
+
+        /* 개별 마진 */
+        margin-top: 10px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+        margin-left: 40px;
+    </div>
+
+    <h3>Padding (패딩) - 안쪽 여백</h3>
+    <div class="code-block css-code">
+        /* 전체 패딩 */
+        padding: 15px; /* 상하좌우 모두 15px */
+        padding: 10px 20px; /* 상하 10px, 좌우 20px */
+        padding: 10px 20px 30px; /* 상 10px, 좌우 20px, 하 30px */
+        padding: 10px 20px 30px 40px; /* 상 10px, 우 20px, 하 30px, 좌 40px */
+
+        /* 개별 패딩 */
+        padding-top: 10px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+        padding-left: 40px;
+    </div>
+
+    <div class="example">
+        <h4>여백 비교 예제</h4>
+        <div style="background: #ecf0f1; padding: 20px; margin: 20px 0;">
+            <div style="background: #3498db; color: white; padding: 0; margin: 10px; text-align: center;">margin: 10px,
+                padding: 0
+            </div>
+            <div style="background: #e74c3c; color: white; padding: 20px; margin: 0; text-align: center;">margin: 0,
+                padding: 20px
+            </div>
+            <div style="background: #27ae60; color: white; padding: 15px; margin: 15px; text-align: center;">margin:
+                15px, padding: 15px
+            </div>
+        </div>
+    </div>
+
+    <h3>유용한 여백 기법들</h3>
+
+    <div class="example">
+        <h4>중앙 정렬</h4>
+        <div class="code-block css-code">
+            .center-block {
+            width: 300px;
+            margin: 0 auto; /* 좌우 마진을 auto로 설정하여 중앙 정렬 */
+            }
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>마진 상쇄 (Margin Collapse)</h4>
+        <div class="code-block css-code">
+            .box1 { margin-bottom: 20px; }
+            .box2 { margin-top: 30px; }
+            /* 실제 두 요소 사이의 간격은 50px이 아니라 30px (더 큰 마진 적용) */
+        </div>
+        <div class="note">
+            인접한 두 요소의 상하 마진은 합쳐지지 않고 더 큰 값으로 적용됩니다.
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>반응형 여백</h4>
+        <div class="code-block css-code">
+            .responsive-spacing {
+            padding: 5%; /* 부모 요소 크기의 5% */
+            margin: 2em 0; /* 글자 크기 기준 여백 */
+            }
+
+            /* 미디어 쿼리와 함께 사용 */
+            @media (max-width: 768px) {
+            .responsive-spacing {
+            padding: 10px;
+            margin: 1em 0;
+            }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>🎓 수업 마무리</h2>
+
+    <h3>오늘 배운 내용 요약</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+        <div style="background: #e8f4fd; border: 2px solid #2196f3; border-radius: 10px; padding: 20px;">
+            <h4 style="color: #1976d2; margin-top: 0;">📝 HTML 폼 요소</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>다양한 input 타입 활용</li>
+                <li>select, textarea 사용법</li>
+                <li>form으로 데이터 전송</li>
+                <li>시맨틱 태그로 의미있는 구조</li>
+                <li>메타데이터로 SEO 최적화</li>
+            </ul>
+        </div>
+
+        <div style="background: #f3e5f5; border: 2px solid #9c27b0; border-radius: 10px; padding: 20px;">
+            <h4 style="color: #7b1fa2; margin-top: 0;">🎨 CSS 스타일링</h4>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>CSS 기본 문법과 적용 방법</li>
+                <li>다양한 선택자 사용</li>
+                <li>박스모델 이해</li>
+                <li>테두리와 여백 조절</li>
+                <li>반응형 디자인 기초</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>다음 단계 학습 가이드</h3>
+
+    <div class="note">
+        <strong>추천 학습 순서:</strong>
+        <ol>
+            <li><strong>CSS 레이아웃</strong>: Flexbox, Grid 시스템</li>
+            <li><strong>반응형 웹</strong>: 미디어 쿼리, 모바일 퍼스트</li>
+            <li><strong>JavaScript</strong>: 폼 유효성 검사, 동적 기능</li>
+            <li><strong>프레임워크</strong>: Bootstrap, React 등</li>
+        </ol>
+    </div>
+
+    <h3>실습 과제</h3>
+
+    <div style="background: #fff8e1; border: 2px solid #ff9800; border-radius: 10px; padding: 20px; margin: 20px 0;">
+        <h4 style="color: #f57c00; margin-top: 0;">🚀 도전 과제</h4>
+
+        <p><strong>개인 프로필 페이지 만들기</strong></p>
+
+        <p>오늘 배운 내용을 활용하여 다음 요소가 포함된 개인 프로필 페이지를 만들어보세요:</p>
+
+        <ul>
+            <li>✅ 시맨틱 태그를 활용한 페이지 구조 (header, nav, main, aside, footer)</li>
+            <li>✅ 개인정보 입력 폼 (이름, 이메일, 전화번호, 생년월일)</li>
+            <li>✅ 취미/관심사 체크박스</li>
+            <li>✅ 자기소개 textarea</li>
+            <li>✅ CSS를 활용한 예쁜 스타일링</li>
+            <li>✅ 반응형 디자인 (모바일에서도 잘 보이도록)</li>
+        </ul>
+
+        <p style="margin-bottom: 0;"><strong>보너스:</strong> 폼 유효성 검사 (required 속성 활용) 및 호버 효과 추가</p>
+    </div>
+
+    <h3>추가 학습 자료</h3>
+
+    <div style="background: #f1f8e9; border: 2px solid #4caf50; border-radius: 10px; padding: 20px; margin: 20px 0;">
+        <h4 style="color: #2e7d32; margin-top: 0;">📚 참고 자료</h4>
+
+        <p><strong>공식 문서:</strong></p>
+        <ul>
+            <li>MDN Web Docs - HTML: 가장 정확하고 상세한 HTML 가이드</li>
+            <li>MDN Web Docs - CSS: CSS 속성별 상세 설명</li>
+            <li>W3Schools: 초보자 친화적인 튜토리얼</li>
+        </ul>
+
+        <p><strong>실습 사이트:</strong></p>
+        <ul>
+            <li>CodePen: 온라인 코드 에디터로 바로 실습</li>
+            <li>JSFiddle: HTML, CSS, JS 통합 테스트</li>
+            <li>GitHub Pages: 무료 웹사이트 호스팅</li>
+        </ul>
+    </div>
+
+    <h3>마지막 팁</h3>
+
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px; padding: 25px; text-align: center; margin: 30px 0;">
+        <h4 style="margin: 0 0 15px 0; font-size: 1.5em;">💡 성공적인 웹 개발을 위한 조언</h4>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 15px;">
+                <strong>🔄 꾸준한 연습</strong><br>
+                매일 조금씩이라도 코드를 작성해보세요
+            </div>
+            <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 15px;">
+                <strong>🤝 커뮤니티 참여</strong><br>
+                다른 개발자들과 소통하며 배우세요
+            </div>
+            <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 15px;">
+                <strong>🔍 문제 해결</strong><br>
+                에러를 두려워하지 말고 디버깅 실력을 키우세요
+            </div>
+            <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 15px;">
+                <strong>📱 트렌드 파악</strong><br>
+                최신 웹 기술 동향을 지속적으로 학습하세요
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0; padding: 30px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef;">
+        <h3 style="color: #495057; margin-bottom: 20px;">🎉 수고하셨습니다!</h3>
+        <p style="font-size: 18px; color: #6c757d; margin: 0;">
+            HTML과 CSS의 기초를 모두 마스터했습니다.<br>
+            이제 더 복잡하고 흥미로운 웹 프로젝트에 도전해보세요!
+        </p>
+
+        <div style="margin-top: 25px;">
+            <button onclick="alert('축하합니다! 다음 레벨로 진행하세요! 🚀')"
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; transition: transform 0.2s;">
+                다음 레벨 도전하기 🚀
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer style="background: #2c3e50; color: white; text-align: center; padding: 30px; margin-top: 50px; border-radius: 10px;">
+    <h3 style="margin: 0 0 15px 0;">HTML & CSS 기초 완주 🏆</h3>
+    <p style="margin: 0; opacity: 0.8;">
+        이 자료가 도움이 되었다면, 계속해서 새로운 기술을 학습하며 성장해 나가세요!
+    </p>
+    <div style="margin-top: 20px; font-size: 14px; opacity: 0.6;">
+        © 2025 HTML & CSS 기초 수업 자료 | 웹 개발의 첫걸음
+    </div>
+</footer>
+
+<script>
+    // 간단한 인터랙션 추가
+    document.addEventListener('DOMContentLoaded', function () {
+        // 모든 코드 블록에 복사 기능 추가 (실제로는 복사되지 않지만 시각적 피드백)
+        const codeBlocks = document.querySelectorAll('.code-block');
+        codeBlocks.forEach(block => {
+            block.addEventListener('click', function () {
+                this.style.background = '#e8f5e8';
+                setTimeout(() => {
+                    this.style.background = '#f8f9fa';
+                }, 200);
+            });
+        });
+
+        // 폼 제출 시 알림
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('폼이 성공적으로 제출되었습니다! (실제로는 서버로 전송되지 않습니다.)');
+            });
+        });
+
+        // 스크롤 시 헤더 고정 효과
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.querySelector('h1');
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // 스크롤 다운
+                header.style.transform = 'translateY(-100%)';
+                header.style.position = 'fixed';
+                header.style.top = '0';
+                header.style.left = '50%';
+                header.style.transform = 'translateX(-50%) translateY(-100%)';
+                header.style.zIndex = '1000';
+                header.style.width = 'calc(100% - 40px)';
+                header.style.maxWidth = '1160px';
+            } else {
+                // 스크롤 업
+                header.style.position = 'static';
+                header.style.transform = 'none';
+                header.style.width = 'auto';
+            }
+            lastScrollTop = scrollTop;
+        });
+    });
+</script>
+</body>
+</html>

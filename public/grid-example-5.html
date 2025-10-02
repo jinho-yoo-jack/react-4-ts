@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f0f0f0;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 150px 1fr 150px;
+        grid-template-rows: 100px 300px 50px 80px;
+        grid-template-areas:
+                "header header header"
+                "a main b"
+                ". . ."
+                "footer footer footer";
+        gap: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 10px;
+        border: 3px solid #333;
+      }
+
+      .header {
+        grid-area: footer;
+        background: #FFD700;
+        border: 3px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .sidebar-a {
+        grid-area: b;
+        background: #87CEEB;
+        border: 3px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      .main {
+        grid-area: main;
+        background: #F5DEB3;
+        border: 3px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      .sidebar-b {
+        grid-area: a;
+        background: #DDA0AA;
+        border: 3px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-weight: bold;
+      }
+
+      .footer {
+        grid-area: header;
+        background: #A9A9A9;
+        border: 3px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">header 👋</div>
+  <div class="sidebar-a">a</div>
+  <div class="main">main</div>
+  <div class="sidebar-b">b</div>
+  <div class="footer">footer</div>
+</div>
+¬
+
+</body>
+</html>

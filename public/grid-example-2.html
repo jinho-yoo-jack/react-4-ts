@@ -1,0 +1,37 @@
+<html lang="ko">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            background-color: black;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 0;
+            align-content: space-around;
+            height: 100%;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 0.5fr auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item header" style="background-color: red">
+        <div class="logo">Logo</div>
+        <div class="title">Title</div>
+    </div>
+    <div class="item contents" style="background-color: orange">Contents</div>
+    <div class="item footer" style="background-color: yellow">Body</div>
+</div>
+</body>
+</html>

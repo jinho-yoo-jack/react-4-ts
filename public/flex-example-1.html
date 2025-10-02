@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            height: 100px;
+            background-color: black;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            width: 500px;
+        }
+
+        .item {
+            flex-grow: 1;
+        }
+
+        .item:nth-child(1) {
+            flex-grow: 0.5;
+            flex-shrink: 0;
+            width: 100px;
+        }
+
+        .item:nth-child(2) {
+            flex-grow: 3;
+        }
+
+        .item:nth-child(3) {
+            flex-grow: 0.5;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="item" style="background-color: red">Hello HTML5 Worldg</div>
+    <div class="item" style="background-color: orange">Hello CSS World</div>
+    <div class="item" style="background-color: yellow">Hello JS World</div>
+</div>
+</body>
+</html>

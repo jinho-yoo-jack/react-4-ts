@@ -1,0 +1,41 @@
+.file-list {
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.file-list-empty {
+  width: 100%;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #6b7280;
+  box-sizing: border-box;
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+
+    &:first-child {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #374151;
+    }
+  }
+
+  .empty-hint {
+    color: #9ca3af;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-list {
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

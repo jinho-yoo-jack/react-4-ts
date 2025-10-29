@@ -1,23 +1,21 @@
 import './App.css'
-import TodoTemplate from "./components/TodoTemplate.tsx";
-import TodoInsert from "./components/TodoInsert.tsx";
-import Info from "./components/Info.tsx";
-import MyComponent from "./components/MyComponent.tsx";
-import {ConfirmModal} from "./components/ConfirmModal.tsx";
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { EntityListPage } from './pages/EntityListPage';
+import { FeatureListPage } from './pages/FeatureListPage';
+import { EditorPage } from './pages/EditorPage';
 
 function App() {
     return (
-        <>
-            {/*<DelayedCounter />*/}
-            {/*<Counter />*/}
-            <TodoTemplate>
-                <TodoInsert/>
-            </TodoTemplate>
-            <Info/>
-            <MyComponent/>
-            <ConfirmModal />
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<EntityListPage />} />
+                <Route path="/entities/:entityId/features" element={<FeatureListPage />} />
+                <Route path="/entities/new" element={<EditorPage />} />
+                <Route path="/entities/:entityId/edit" element={<EditorPage />} />
+                <Route path="/entities/:entityId/features/new" element={<EditorPage />} />
+                <Route path="/features/:featureId/edit" element={<EditorPage />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
